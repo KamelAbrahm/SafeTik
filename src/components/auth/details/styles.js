@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderColor: 'lightgray',
     borderWidth: 1,
-    borderstyle: 'solid',
+    borderStyle: 'solid',
     paddingVertical: 10,
     paddingHorizontal: 20,
     alignItems: 'center',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderColor: 'lightgray',
     borderBottomWidth: 1,
-    borderstyle: 'solid',
+    borderStyle: 'solid',
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginBottom: 20,

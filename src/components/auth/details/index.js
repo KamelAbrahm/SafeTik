@@ -4,19 +4,27 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { useDispatch } from 'react-redux';
 import { login, register } from '../../../redux/actions';
+import { USER_STATE_CHANGE } from '../../../redux/constants';
 
 const AuthDetails = ({ authPage, setDetailsPage }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const dispatch = useDispatch();
   const handleLogin = () => {
     dispatch(login(email, password))
-      .then(() => {
+      .then((userCredential) => {
         console.log('login successful');
+        dispatch({
+          type: USER_STATE_CHANGE,
+          currentUser: userCredential.user,
+          loaded: true,
+        });
       })
-      .catch(() => {
-        console.log('login unsuccessful');
+      .catch((error) => {
+        console.log('login unsuccessful', error);
+        setErrorMessage(error);
       });
   };
 
@@ -42,7 +50,6 @@ const AuthDetails = ({ authPage, setDetailsPage }) => {
       <TextInput
         onChangeText={(text) => setPassword(text)}
         style={styles.textInput}
-        secureTextEntry
         placeholder="Password"
       ></TextInput>
 

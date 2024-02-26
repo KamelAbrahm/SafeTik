@@ -10,6 +10,7 @@ import rootReducers from './src/redux/reducers';
 import AuthScreen from './src/screens/auth';
 import AuthMenu from './src/components/auth/menu';
 import { getAuth } from '@firebase/auth';
+import Route from './src/components/navigation/main';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDSyALi8C3VNBOwJpiacC0sk6sfziEBy3E',
@@ -29,16 +30,7 @@ const auth = getAuth(fireapp);
 export default function App() {
   return (
     <Provider store={store}>
-      <AuthScreen />
+      <Route />
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

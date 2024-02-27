@@ -11,6 +11,12 @@ import AuthScreen from './src/screens/auth';
 import AuthMenu from './src/components/auth/menu';
 import { getAuth } from '@firebase/auth';
 import Route from './src/components/navigation/main';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  '@firebase/auth: Auth (10.8.0):',
+  "You attempted to use a firebase module that's not installed on your Android project by calling firebase.app()",
+]);
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDSyALi8C3VNBOwJpiacC0sk6sfziEBy3E',

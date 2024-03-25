@@ -11,12 +11,17 @@ const FeedScreen = () => {
 
   const onViewableItemsChanged = useRef(({ changed }) => {
     changed.forEach((element) => {
+      console.log(
+        `onViewItemsChanged for index ${element}, isViewable: ${element.isViewable}`
+      );
       const cell = mediaRefs.current[element.key];
+
       if (cell) {
         console.log('onViewItemsChanged', element, element.isViewable);
         if (element.isViewable) {
           cell.play();
         } else {
+          console.log(`Stopping video for item at index ${element.index}`);
           cell.stop();
         }
       }
@@ -33,7 +38,9 @@ const FeedScreen = () => {
         ]}
       >
         <PostSingle
-          ref={(PostSingleRef) => (mediaRefs.current[item] = PostSingleRef)}
+          ref={(PostSingleRef) => {
+            mediaRefs.current[item] = PostSingleRef;
+          }}
         />
       </View>
     );
@@ -52,6 +59,7 @@ const FeedScreen = () => {
         renderItem={renderItem}
         pagingEnabled
         keyExtractor={(item) => item}
+        decelerationRate={'normal'}
         onViewableItemsChanged={onViewableItemsChanged.current}
       />
     </View>

@@ -4,11 +4,12 @@ import React, {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { Video } from 'expo-av';
+import { ResizeMode, Video } from 'expo-av';
 import styles from './styles';
 
 const PostSingle = forwardRef((props, parentRef) => {
   const ref = useRef(null);
+
   useImperativeHandle(parentRef, () => ({
     play,
     unload,
@@ -46,7 +47,7 @@ const PostSingle = forwardRef((props, parentRef) => {
   const stop = async () => {
     console.log('attempting to stop video at ref');
     if (ref.current == null) {
-      console.log('Video ref is null, cannot stop');
+      console.log(`Video ref is ${ref.current}, cannot stop`);
       return;
     }
     const status = await ref.current.getStatusAsync();
@@ -74,8 +75,9 @@ const PostSingle = forwardRef((props, parentRef) => {
 
   return (
     <Video
+      ref={ref}
       style={styles.container}
-      resizeMode="cover"
+      resizeMode={ResizeMode.COVER}
       shouldPlay={true}
       isLooping
       source={{

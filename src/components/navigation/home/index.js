@@ -26,7 +26,7 @@ const HomeScreen = () => {
         }}
       />
       <Tab.Screen
-        name="profile"
+        name="search"
         component={EmptyScreen}
         options={{
           tabBarIcon: ({ color }) => (

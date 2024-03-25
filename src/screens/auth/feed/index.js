@@ -21,7 +21,7 @@ const FeedScreen = () => {
         if (element.isViewable) {
           cell.play();
         } else {
-          console.log(`Stopping video for item at index ${element.index}`);
+          console.log(`Stopping video for item at index ${element}`);
           cell.stop();
         }
       }

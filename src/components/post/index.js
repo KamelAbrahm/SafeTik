@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 import { ResizeMode, Video } from 'expo-av';
 import styles from './styles';
+import PostSingleOverlay from './overlay';
 
 const PostSingle = forwardRef((props, parentRef) => {
   const ref = useRef(null);
@@ -74,16 +75,19 @@ const PostSingle = forwardRef((props, parentRef) => {
   };
 
   return (
-    <Video
-      ref={ref}
-      style={styles.container}
-      resizeMode={ResizeMode.COVER}
-      shouldPlay={true}
-      isLooping
-      source={{
-        uri: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4',
-      }}
-    />
+    <>
+      <PostSingleOverlay />
+      <Video
+        ref={ref}
+        style={styles.container}
+        resizeMode={ResizeMode.COVER}
+        shouldPlay={true}
+        isLooping
+        source={{
+          uri: 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4',
+        }}
+      />
+    </>
   );
 });
 

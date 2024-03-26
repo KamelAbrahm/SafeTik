@@ -1,12 +1,12 @@
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { useDispatch } from 'react-redux';
 import { login, register } from '../../../redux/actions';
 import { USER_STATE_CHANGE } from '../../../redux/constants';
 
-const AuthDetails = ({ authPage, setDetailsPage }) => {
+const AuthDetails = ({ authPage, setDetailsPage, setAuthPage }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -32,6 +32,7 @@ const AuthDetails = ({ authPage, setDetailsPage }) => {
     dispatch(register(email, password))
       .then(() => {
         console.log('register successful');
+        setAuthPage(0);
       })
       .catch(() => {
         console.log('register unsuccessful');
@@ -51,6 +52,7 @@ const AuthDetails = ({ authPage, setDetailsPage }) => {
         onChangeText={(text) => setPassword(text)}
         style={styles.textInput}
         placeholder="Password"
+        secureTextEntry
       ></TextInput>
 
       <TouchableOpacity

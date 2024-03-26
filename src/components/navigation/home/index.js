@@ -3,6 +3,8 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 import FeedScreen from '../../../screens/auth/feed';
+import SearchScreen from '../../../screens/search';
+import ProfileScreen from '../../../screens/profile';
 
 const EmptyScreen = () => {
   return <View></View>;
@@ -27,7 +29,7 @@ const HomeScreen = () => {
       />
       <Tab.Screen
         name="search"
-        component={EmptyScreen}
+        component={SearchScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="search" size={24} color={color} />
@@ -36,7 +38,7 @@ const HomeScreen = () => {
       />
       <Tab.Screen
         name="me"
-        component={EmptyScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="user" size={24} color={color} />

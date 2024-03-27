@@ -76,7 +76,8 @@ export const register = (email, password) => (dispatch) =>
       .then(() => {
         resolve();
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         reject();
       });
   });
